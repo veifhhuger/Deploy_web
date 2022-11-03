@@ -1,38 +1,48 @@
-{% extends "network/layout.html" %}
-disabled
-{% block body %}
-    <div id="new-post-section">
-        <form id="new-post-form">
-            <textarea id="new-post-textarea" cols="90" rows="16" placeholder="Your post"></textarea>
-            <input type="button" id="new-post-button" value="Save"/>
-        </form>
-    </div>
-    <div id="edit-post-section">
-        <form id="edit-post-form">
-            <textarea id="edit-post-textarea" cols="45" rows="15" placeholder="Your post"></textarea>
-            <input type="button" id="edit-post-button" value="Save"/>
-        </form>
-    </div>
-    <div id="view-posts">
-        <div id="posts-section"></div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item" id="previous-item">
-                <a class="page-link" id="previous">Previous</a>
-              </li>
-              <li class="page-item" id="next-item">
-                <a class="page-link" id="next">Next</a>
-              </li>
-            </ul>
-        </nav>
-    </div>
-    <div id="user-profile-section">
-        <h4 id="username"></h4>
-        <h6>Followers:</h6>
-        <button id="user-follow-button"></button>
-        <div id="user-followers-section"></div>
-        <h6>Posts:</h6>
-        <div id="user-posts-section"></div>
-    </div>
-    <script type="text/javascript" src="static/network/index.js"></script>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" href="./styles/style.css">
+  
+    <meta property="og:title" content="Заголовок страницы в OG">
+    <meta property="og:description" content="Описание страницы в OG">
+    <meta property="og:image" content="https://example.com/image.jpg">
+    <meta property="og:url" content="https://example.com/">
+  </head>
+  <body>
+    <header>
+      <h1>Это мой сайт</h1>
+      <p>Он хороший</p>
+      <nav>
+        <ul>
+          <li><a href="index.html">Эта страница</a></li>
+          <li><a href="catalog.html">Другая страница</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+        <section>
+          <h2>Первая секция</h2>
+          <p>Она обо мне</p>
+          <img src="images/image.png" alt="Человек и пароход">
+          <p>Но может быть и о семантике, я пока не решил.</p>
+        </section>
+        <section>
+          <h2>Вторая секция</h2>
+          <p>Она тоже обо мне</p>
+        </section>
+        <section>
+          <h2>И третья</h2>
+          <p>Вы уже должны были начать догадываться.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>Сюда бы я вписал информацию об авторе и ссылки на другие сайты</p>
+    </footer>
+    <!-- сюда можно подключить jquery <script src="scripts/app.js" defer></script> -->
+  </body>
+</html>
