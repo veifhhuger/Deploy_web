@@ -1,24 +1,847 @@
-{% extends "network/layout.html" %}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><base href="https://ohcat.ru/">
 
-{% block body %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-    <h2>Login</h2>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
+<meta property="og:type" content="website">
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+<meta property="og:site_name" content="ohcat.ru">
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+<meta property="og:title" content="Сайт о наших любимых кошках, котах и котятах | ОхКэт">
 
-{% endblock %}
+<meta property="og:description" content="Все о кошках. Названия пород, фото, видео, картинки, клички, отзывы, уход, характер, содержание и многое другое о кошках, котах и котятах.">
+
+<meta property="og:url" content="//">
+
+<meta property="og:locale" content="ru_RU">
+
+<meta property="og:image" content="assets/cache/images/750x300-index.23f.jpg">
+
+<meta property="og:image:width" content="750">
+
+<meta property="og:image:height" content="300">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!--<link rel="stylesheet" href="https://ohcat.ru/assets/css/bootstrap.min.css">-->
+
+<link rel="stylesheet" href="https://ohcat.ru/assets/css/style_v2.min.css">
+
+<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-4372857349695428", enable_page_level_ads: true});</script>-->
+
+<script data-ad-client="ca-pub-4372857349695428" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SENEVT0HH0"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SENEVT0HH0');
+</script>
+
+<meta name="yandex-verification" content="4f43f51ef0e51b0f" />
+
+<!-- Yandex.RTB -->
+
+<script>window.yaContextCb=window.yaContextCb||[]</script>
+
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+
+<!-- Yandex.RTB R-A-762857-9 -->
+
+<script>window.yaContextCb.push(()=>{
+
+  Ya.Context.AdvManager.render({
+
+    type: 'floorAd',
+
+    blockId: 'R-A-762857-9'
+
+  })
+
+})</script>
+
+<script async src="https://bvshfz.com/qxz71l912ivlm0p3y0hq8876/qvu768/ypksb.php"></script>
+<title>Сайт о наших любимых кошках, котах и котятах | ОхКэт</title>
+<meta name="description" content="Все о кошках. Названия пород, фото, видео, картинки, клички, отзывы, уход, характер, содержание и многое другое о кошках, котах и котятах.">
+<meta name="keywords" content="кот кошка котенок фото порода окрас питание уход объявления выставки факты анекдоты статьи сайт">
+</head>
+<body>
+<a href="#" class="back-to-top"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-secondary">
+<div class="container">
+<a class="navbar-brand" href="#"><img src="assets/images/logo/cat-track.jpg" width="30" height="30" alt="Логотип"></a>
+<!--<strong><a class="navbar-brand" href="https://ohcat.ru/">Ох КэТ</a></strong>-->
+<strong><a class="navbar-brand" href="https://ohcat.ru/">Ох, уж эти коты...!</a></strong>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+<ul class="navbar-nav nav-fill">
+<li class="nav-item"><a class="nav-link text-white" href="https://ohcat.ru/">Главная</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="https://ohcat.ru/breeds.html">Породы кошек</a></li>
+<li class="nav-item"><a class="nav-link text-white" href="https://ohcat.ru/kitten.html">Котенок</a></li>
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Все о кошках</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<a class="dropdown-item" href="https://ohcat.ru/pregnancy-and-childbirth.html">Беременность и роды у кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/education-and-training.html">Воспитание и дрессировка кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/cat-health.html">Здоровье кошки</a>
+<a class="dropdown-item" href="https://ohcat.ru/nicknames-cats.html">Клички для кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/feline-species.html">Кошачьи, описание и виды</a>
+<a class="dropdown-item" href="https://ohcat.ru/cat-food.html">Питание кошки</a>
+<a class="dropdown-item" href="https://ohcat.ru/other.html">Сведения о кошках</a>
+<a class="dropdown-item" href="https://ohcat.ru/best-cat.html">ТОП пород кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/cat-care.html">Уход за кошкой</a>
+</div>
+<li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Это интересно</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<a class="dropdown-item" href="https://ohcat.ru/video.html">Видео про кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/cats-in-art.html">Кошки в искусстве</a>
+<a class="dropdown-item" href="https://ohcat.ru/mystery.html">Загадки про кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/blog.html">Мой блог о кошках</a>
+<a class="dropdown-item" href="https://ohcat.ru/game.html">Онлайн игры</a>
+<a class="dropdown-item" href="https://ohcat.ru/stories-about-cats.html">Рассказы о кошках</a>
+<a class="dropdown-item" href="https://ohcat.ru/verse-about-cats.html">Стихи о котах и кошках</a>
+<a class="dropdown-item" href="https://ohcat.ru/fakti.html">Факты о кошках</a>
+<a class="dropdown-item" href="https://ohcat.ru/ditty-about-cats.html">Частушки про кошек</a>
+<a class="dropdown-item" href="https://ohcat.ru/humor.html">Юмор о кошках</a>
+</div>
+<li class="nav-item"><a class="nav-link text-white" href="https://ohcat.ru/gallery.html">Галерея</a></li>
+</ul>
+</div>
+<!--<form class="form-inline" action="https://ohcat.ru/search.html" target="_self">
+<input class="form-control mr-sm-0" type="search" placeholder="Поиск" aria-label="Search">
+<button class="btn my-2 my-sm-0 btn-light" type="submit">Поиск</button>-->
+<!--<script async src='https://cse.google.com/cse.js?cx=partner-pub-4372857349695428:2735626992'></script><div class="gcse-searchbox-only"></div>
+</form>-->
+</div></nav>
+<div class="clearfix"></div>
+<!--{HEADER}-->
+<div class="container bg-light mt-3 pt-2 mb-3 pb-3 shadow">
+<div class="pb-2"></div>
+<div class="row">
+<div class="col-lg-12">
+<header><h1>Наши любимые кошки, коты и котята!</h1></header>
+</div>
+</div>
+<section><div class="row">
+<div class="col-lg-8">
+<a href="https://ohcat.ru/breeds.html"><h2 class="a-title uline"><span>Породы кошек »</span></h2></a>
+<p>Пород кошек великое множество. Большие и маленькие, короткошерстные и пушистые, есть даже совсем лысые кошки. На каждую породу находится свой ценитель и каждый владелец кошки с пылом доказывает преимущества именно своей любимой породы. Но ничуть не меньше люди любят и обычных дворовых подкидышей и не удивительно, что именно эти кошки оказываются более ласковыми и преданными. Всю свою кошачью жизнь они благодарят своих хозяев за то, что не дали пропасть, за то что дали крышу над головой и миску с вкусной едой.</p>
+<div class="row">
+<div class="col-lg-6">
+<div class="card mb-3 shadow-sm">
+<a href="breeds.html" title="Породы домашних кошек"><h3 class="card-header">Породы домашних кошек</h3></a>
+<div class="card-body">
+<div class="text-center mb-3"><a title="Породы домашних кошек" href="breeds.html"><img class="shadow-sm img-fluid lazyload" src="/assets/images/breeds_sm/cat_breeds.jpg" alt="Породы домашних кошек" /></a></div>
+<a href="breeds.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+<div class="col-lg-6">
+<div class="card mb-3 shadow-sm">
+<a href="gallerybreeds.html" title="Галерея пород кошек"><h3 class="card-header">Галерея пород кошек</h3></a>
+<div class="card-body">
+<div class="text-center mb-3"><a title="Галерея пород кошек" href="gallerybreeds.html"><img class="shadow-sm img-fluid lazyload" src="/assets/images/breeds_sm/breeds.jpg" alt="Галерея пород кошек" /></a></div>
+<a href="gallerybreeds.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+<div class="col-lg-6">
+<div class="card mb-3 shadow-sm">
+<a href="breeds/maine-coon.html" title="Мейн-кун"><h3 class="card-header">Мейн-кун</h3></a>
+<div class="card-body">
+<div class="text-center mb-3"><a title="Мейн-кун" href="breeds/maine-coon.html"><img class="shadow-sm img-fluid lazyload" src="assets/cache/images/breeds/305x230-maine-coon-h1.00f.jpg" alt="Мейн-кун" /></a></div>
+<a href="breeds/maine-coon.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-6">
+<div class="card mb-3 shadow-sm">
+<a href="breeds/bombay.html" title="Бомбейская кошка"><h3 class="card-header">Бомбейская кошка</h3></a>
+<div class="card-body">
+<div class="text-center mb-3"><a title="Бомбейская кошка" href="breeds/bombay.html"><img class="shadow-sm img-fluid lazyload" src="assets/cache/images/breeds/305x230-bombay-h1.a3d.jpg" alt="Бомбейская кошка" /></a></div>
+<a href="breeds/bombay.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></div>
+<div class="col-lg-4">
+<aside class="card shadow-sm mb-3 ">
+<h3 class="card-header">Мы в социальных сетях</h3>
+<div class="card-body"><div class="text-center social-links">
+<a href="http://www.vk.com/catvtomske" target="_blank" rel="nofollow"><img alt="ВКонтакте" src="https://ohcat.ru/assets/images/icon/vk.png"></a>
+<a href="https://plus.google.com/u/0/communities/108015343671823858895" target="_blank" rel="nofollow"><img alt="Google+" src="https://ohcat.ru/assets/images/icon/google.png"></a>
+<a href="http://www.twitter.com/catvtomske" target="_blank" rel="nofollow"><img alt="Twtter" src="https://ohcat.ru/assets/images/icon/tw.png"></a>
+</div></div></aside>
+<aside class="card shadow-sm mb-3">
+<h3 class="card-header">Друзья сайта</h3>
+<div class="card-body">
+<div class="text-center">
+<a href="http://mchost.ru/?referer=384203358" target="_blank" rel="nofollow"><img alt="Крупнейший хостинг-провайдер" title="Крупнейший Российский хостинг-провайдер" src="https://ohcat.ru/assets/images/bn/mchostsm.gif"></a>
+<a href="http://ophuket.ru" target="_blank" rel="nofollow"><img class="mt-1" src="https://ohcat.ru/assets/images/bn/phuket_250x130.jpg" title="Путеводитель по острову Пхукет" alt="Путеводитель по острову Пхукет"></a>
+</div>
+</div>
+</aside>
+<aside class="card shadow-sm mb-3">
+<h3 class="card-header">Факты</h3>
+<div class="card-body">
+<p class="card-text">Во времена испанской инквизиции, папа Иннокентий VIII признал кошек помощниками дьявола, и тысячи кошки были сожжены. К сожалению, массовое убийство кошек привело к резкому увеличению популяции крыс, что усугубило последствия 'Черной Смерти' (эпидемии чумы).</p>
+<a href="https://ohcat.ru/fakti.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Другие факты &raquo;</a>
+</div>
+</aside>
+</div></div></section>
+<section>
+<a href="https://ohcat.ru/new-on-site.html"><h2 class="a-title uline"><span>Новое на сайте »</span></h2></a>
+<div class="row bg-secondary pt-3">
+<div class="col-lg-6 mb-3">
+<div class="card shadow-sm h-100">
+<a href="best-cat/cat-28.html" title="Самые неприхотливые породы кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-28.af6.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-28.af6.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/328x-cat-28.a40.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/448x-cat-28.66c.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/538x-cat-28.857.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-28.dc9.jpg" alt="Британская короткошерстная кошка" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="best-cat/cat-28.html" title="Самые неприхотливые породы кошек"><h3 class="card-title">Самые неприхотливые породы кошек</h3></a>
+<p class="card-text">Топ-10 самых неприхотливых пород кошек. Для занятых людей важно, чтобы их домашние животные были неприхотливы. Одни кошки постоянно нуждаются во внимании и [...]</p>
+</div>
+<div class="card_footer">
+<a href="best-cat/cat-28.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-6 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-health/cat-health-82.html" title="У кошки теплый нос">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-health-82.120.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-health-82.120.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/328x-cat-health-82.d8e.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/448x-cat-health-82.854.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/538x-cat-health-82.814.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-health-82.aa5.jpg" alt="Кошкин нос крупным планом" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-health/cat-health-82.html" title="У кошки теплый нос"><h3 class="card-title">У кошки теплый нос</h3></a>
+<p class="card-text">С помощью носа кошки получают информацию об окружающем мире, распознают опасность и выбирают самые лакомые кусочки. Но это – далеко не единственные функции [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-health/cat-health-82.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/kitten.html"><h2 class="a-title uline"><span>Все о котенке »</span></h2></a>
+<div class="row">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="kitten/sociable-kitten.html" title="Как помочь вашему котенку стать общительным?">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-sociable-kitten-big.d35.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-sociable-kitten-big.d35.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-sociable-kitten-big.da0.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-sociable-kitten-big.257.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-sociable-kitten-big.553.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-sociable-kitten-big.ddc.jpg" alt="два котенка играют" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="kitten/sociable-kitten.html" title="Как помочь вашему котенку стать общительным?"><h3 class="card-title">Как помочь вашему котенку стать общительным?</h3></a>
+<p class="card-text">До прихода к вам, ваш питомец имел возможность общаться с матерью, котятами своего помета и несколькими людьми, которые за ним ухаживали. Котята в молодом возрасте [...]</p>
+</div>
+<div class="card_footer">
+<a href="kitten/sociable-kitten.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="kitten/british-kitten-month.html" title="Британский котенок в возрасте одного месяца">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article79.79b.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article79.79b.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article79.4d0.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article79.fe1.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article79.7e2.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article79.be4.jpg" alt="Британский котенок" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="kitten/british-kitten-month.html" title="Британский котенок в возрасте одного месяца"><h3 class="card-title">Британский котенок в возрасте одного месяца</h3></a>
+<p class="card-text">Порода кошек британские короткошерстные является довольно популярной и распространенной. Эти животные отличаются добродушным характером, аристократизмом и [...]</p>
+</div>
+<div class="card_footer">
+<a href="kitten/british-kitten-month.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="kitten/kak-opredelit-vozrast-kotenka.html" title="Как определить возраст котенка">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-kak-opredelit-vozrast-kotenka.91a.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-kak-opredelit-vozrast-kotenka.91a.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-kak-opredelit-vozrast-kotenka.4f3.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-kak-opredelit-vozrast-kotenka.d7e.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-kak-opredelit-vozrast-kotenka.096.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-kak-opredelit-vozrast-kotenka.dc7.jpg" alt="Шотландский вислоухий котенок" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="kitten/kak-opredelit-vozrast-kotenka.html" title="Как определить возраст котенка"><h3 class="card-title">Как определить возраст котенка</h3></a>
+<p class="card-text">По каким признака можно определить возраст котенка? Поделюсь своим опытом. Может вы тоже спасете какого-нибудь подкидыша. По глазам так же можно приблизительно [...]</p>
+</div>
+<div class="card_footer">
+<a href="kitten/kak-opredelit-vozrast-kotenka.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/education-and-training.html"><h2 class="a-title uline"><span>Воспитание и дрессировка кошек »</span></h2></a>
+<div class="row bg-warning pt-3">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="education-and-training/title94.html" title="Характер, повадки и воспитание британских кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article95.f31.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article95.f31.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article95.e70.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article95.ddd.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article95.d96.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article95.d46.jpg" alt="Британский кот" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="education-and-training/title94.html" title="Характер, повадки и воспитание британских кошек"><h3 class="card-title">Характер, повадки и воспитание британских кошек</h3></a>
+<p class="card-text">Основная черта характера британский кошек – независимость. Отчасти из-за нее порода считается идеальной для занятых хозяев. Кошка самостоятельна и не будет [...]</p>
+</div>
+<div class="card_footer">
+<a href="education-and-training/title94.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="education-and-training/cat-spoil-houseplants.html" title="Как отучить кошку портить комнатные растения?">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-spoil-houseplants.61d.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-spoil-houseplants.61d.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-spoil-houseplants.fcb.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-spoil-houseplants.5e7.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-spoil-houseplants.3e3.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-spoil-houseplants.649.jpg" alt="Кошка и комнатный цветок" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="education-and-training/cat-spoil-houseplants.html" title="Как отучить кошку портить комнатные растения?"><h3 class="card-title">Как отучить кошку портить комнатные растения?</h3></a>
+<p class="card-text">Многие люди являются одновременно любителями и флоры и фауны, разводя комнатные растения и заводя домашних животных. Например, кошек. И наверняка очень часто во [...]</p>
+</div>
+<div class="card_footer">
+<a href="education-and-training/cat-spoil-houseplants.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="education-and-training/education-and-training-37.html" title="Почему кошка царапает мебель">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-education-and-training-37-1.551.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-education-and-training-37-1.551.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-education-and-training-37-1.71a.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-education-and-training-37-1.c40.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-education-and-training-37-1.b8c.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-education-and-training-37-1.904.jpg" alt="Рыжий котенок и когтечочка" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="education-and-training/education-and-training-37.html" title="Почему кошка царапает мебель"><h3 class="card-title">Почему кошка царапает мебель</h3></a>
+<p class="card-text">Кошка царапает мебель? Таким вопросом задаются почти все любители кошек. И правда, почему кошка царапает мебель, неужели нельзя драть что-нибудь другое? Все кто [...]</p>
+</div>
+<div class="card_footer">
+<a href="education-and-training/education-and-training-37.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/cat-health.html"><h2 class="a-title uline"><span>Здоровье кошек »</span></h2></a>
+<div class="row">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-health/cat-health-13.html" title="Сердечный гельминтоз (дирофиляриоз)">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-health-13.8ff.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-health-13.8ff.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-health-13.db0.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-health-13.df8.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-health-13.a84.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-health-13.a13.jpg" alt="Кошка в дворе" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-health/cat-health-13.html" title="Сердечный гельминтоз (дирофиляриоз)"><h3 class="card-title">Сердечный гельминтоз (дирофиляриоз)</h3></a>
+<p class="card-text">Сердечный гельминтоз вызывает паразит, живущий в сердце собаки (и редко кошки). Его размер достигает 11 дюймов в длину. Редко, но случается, что сердечный гельминтоз [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-health/cat-health-13.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-health/cat-health-75.html" title="Панкреатит у кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-health-75.047.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-health-75.047.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-health-75.f87.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-health-75.432.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-health-75.176.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-health-75.492.jpg" alt="Панкреатит у кота" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-health/cat-health-75.html" title="Панкреатит у кошек"><h3 class="card-title">Панкреатит у кошек</h3></a>
+<p class="card-text">Панкреатит у кошки - широко распространенная и опасная патология. Она не имеет типичных симптомов, что затрудняет диагностику. Для выявления заболевания [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-health/cat-health-75.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-health/title98.html" title="Проблема лишнего веса у кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article99-1.c93.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article99-1.c93.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article99-1.5ba.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article99-1.af5.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article99-1.2d9.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article99-1.754.jpg" alt="Толстый кот" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-health/title98.html" title="Проблема лишнего веса у кошек"><h3 class="card-title">Проблема лишнего веса у кошек</h3></a>
+<p class="card-text">Кошки так давно живут бок о бок с человеком, что порой естественные инстинкты самосохранения начинают давать сбой. И тогда появляются проблемы, совершенно [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-health/title98.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/cat-food.html"><h2 class="a-title uline"><span>Питание кошек »</span></h2></a>
+<div class="row bg-info pt-3">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-food/cat-food-32.html" title="Диетическое и лечебное питание">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-food-32.cba.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-food-32.cba.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-food-32.2c9.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-food-32.6d2.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-food-32.9bc.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-food-32.b09.jpg" alt="Бездомный кот кушает" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-food/cat-food-32.html" title="Диетическое и лечебное питание"><h3 class="card-title">Диетическое и лечебное питание</h3></a>
+<p class="card-text">При лечении многих заболеваний большое значение имеет диета, которая обеспечивает питание и, учитывая состояние обмена веществ больного животного, способствует [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-food/cat-food-32.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-food/cat-food-27.html" title="Нужно ли давать кошкам яйца?">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-food-27.96c.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-food-27.96c.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-food-27.fc9.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-food-27.e1b.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-food-27.09d.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-food-27.a0a.jpg" alt="Кот и два куриных яйца" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-food/cat-food-27.html" title="Нужно ли давать кошкам яйца?"><h3 class="card-title">Нужно ли давать кошкам яйца?</h3></a>
+<p class="card-text">У многих владельцев кошек возникает вопрос, нужно ли давать кошкам яйца, и если да, то сколько и когда? Сегодня уже доказано, что яйца полезны не только людям, но и [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-food/cat-food-27.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-food/cat-food-16.html" title="Принципы правильного питания кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-food-16.93b.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-food-16.93b.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-food-16.a9b.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-food-16.9af.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-food-16.940.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-food-16.78c.jpg" alt="Четыре котенка кушают" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-food/cat-food-16.html" title="Принципы правильного питания кошек"><h3 class="card-title">Принципы правильного питания кошек</h3></a>
+<p class="card-text">Рацион каждой кошки должен быть хорошо сбалансирован. Под термином «сбалансированный» имеется ввиду питание, обеспечивающее всеми необходимыми питательными [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-food/cat-food-16.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<a href="https://ohcat.ru/cat-care.html"><h2 class="a-title uline"><span>Уход и содержание кошек »</span></h2></a>
+<div class="row">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-care/cat-care-61.html" title="Где спит ваша кошка?">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-care-61.b78.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-care-61.b78.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-care-61.5c4.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-care-61.1ca.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-care-61.4ec.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-care-61.28e.jpg" alt="Кот спит " class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-care/cat-care-61.html" title="Где спит ваша кошка?"><h3 class="card-title">Где спит ваша кошка?</h3></a>
+<p class="card-text">Большинство хозяев ничего не имеют против того, чтобы любимая кошка спала вместе с ними в кровати. Я тоже отношусь к этому большинству. Мне приятно, когда мой [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-care/cat-care-61.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-care/cat-care-17.html" title="Опасности жизнь кошек на воле">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-care-17.254.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-care-17.254.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-care-17.3cd.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-care-17.42d.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-care-17.cbd.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-care-17.435.jpg" alt="Кошка выходит на улицу" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-care/cat-care-17.html" title="Опасности жизнь кошек на воле"><h3 class="card-title">Опасности жизнь кошек на воле</h3></a>
+<p class="card-text">Содержание кошки часто совместимо с относительной свободой. Питомец выходит на прогулку, когда чувствует, что пора размять лапы или поохотиться, и такая [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-care/cat-care-17.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="cat-care/cat-care-43.html" title="Два кота в одной квартире">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-cat-care-43.17f.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-cat-care-43.17f.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-cat-care-43.fe4.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-cat-care-43.c0e.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-cat-care-43.8c8.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-cat-care-43.19a.jpg" alt="Два кота" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="cat-care/cat-care-43.html" title="Два кота в одной квартире"><h3 class="card-title">Два кота в одной квартире</h3></a>
+<p class="card-text">Коты и кошки – самые популярные домашние любимцы. Это не удивительно. Ласковый, привязанный к хозяину кот – настоящее сокровище. Мы обожаем своих пушистиков, они в [...]</p>
+</div>
+<div class="card_footer">
+<a href="cat-care/cat-care-43.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/other.html"><h2 class="a-title uline"><span>Сведения о кошках »</span></h2></a>
+<div class="row bg-success pt-3">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="other/title135.html" title="Кошки в книге рекордов Гиннеса">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article135-big.7b3.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article135-big.7b3.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article135-big.1c5.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article135-big.809.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article135-big.4d7.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article135-big.236.jpg" alt="Логотип книги рекордов Гиннеса" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="other/title135.html" title="Кошки в книге рекордов Гиннеса"><h3 class="card-title">Кошки в книге рекордов Гиннеса</h3></a>
+<p class="card-text">Наверняка, каждый из вас знает о существовании книги рекордов Гиннеса, и многие также слышали о том, что туда попадают и наши четвероногие друзья. Итак, в данной [...]</p>
+</div>
+<div class="card_footer">
+<a href="other/title135.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="other/other-68.html" title="Повадки кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-other-68.37d.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-other-68.37d.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-other-68.081.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-other-68.b6b.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-other-68.8cf.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-other-68.3de.jpg" alt="Кот под одеялом" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="other/other-68.html" title="Повадки кошек"><h3 class="card-title">Повадки кошек</h3></a>
+<p class="card-text">Прежде чем заводить кошку не мешало бы знать о ее повадках. А зная повадки кошек, либо смириться с ними, либо не заводить кошку вообще. По своей природе кошки ночные [...]</p>
+</div>
+<div class="card_footer">
+<a href="other/other-68.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="other/title106.html" title="Мышь для кошки своими руками">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article106-1.76c.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article106-1.76c.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article106-1.b2f.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article106-1.361.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article106-1.45b.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article106-1.de2.jpg" alt="Тряпочные мышки" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="other/title106.html" title="Мышь для кошки своими руками"><h3 class="card-title">Мышь для кошки своими руками</h3></a>
+<p class="card-text">Не для кого ни секрет, что все кошки любят играть. Развлеките любимого котенка или кошку игрой в кошки-мышки. Порадуйте домашнего любимца симпатичной игрушкой, и он [...]</p>
+</div>
+<div class="card_footer">
+<a href="other/title106.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/pregnancy-and-childbirth.html"><h2 class="a-title uline"><span>Беременность и роды у кошек »</span></h2></a>
+<div class="row">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-1.html" title="Кошка и беременность">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-pregnancy-and-childbirth-1.8a3.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-pregnancy-and-childbirth-1.8a3.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-pregnancy-and-childbirth-1.25f.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-pregnancy-and-childbirth-1.434.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-pregnancy-and-childbirth-1.17b.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-pregnancy-and-childbirth-1.cc2.jpg" alt="Беременная кошка" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-1.html" title="Кошка и беременность"><h3 class="card-title">Кошка и беременность</h3></a>
+<p class="card-text">После вязки многих хозяев мучает вопрос, беременна ли их кошка? Первые 20 дней беременности проходят незаметно, по состоянию и внешнему виду кошки ничего не [...]</p>
+</div>
+<div class="card_footer">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-1.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="pregnancy-and-childbirth/health1.html" title="Как правильно кормить беременную кошку?">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-article7-big.40b.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-article7-big.40b.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-article7-big.3ff.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-article7-big.191.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-article7-big.dc1.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-article7-big.03c.jpg" alt="Рыжая кошка с котятами" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="pregnancy-and-childbirth/health1.html" title="Как правильно кормить беременную кошку?"><h3 class="card-title">Как правильно кормить беременную кошку?</h3></a>
+<p class="card-text">Когда ваша любимая кошечка находится в таком очень интересном положении, как беременность, вам нужно знать, что ваша защита, помощь, внимание и любовь нужны ей [...]</p>
+</div>
+<div class="card_footer">
+<a href="pregnancy-and-childbirth/health1.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-2.html" title="Беременность у кошек - особенности течения">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-pregnancy-and-childbirth-2.2c2.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-pregnancy-and-childbirth-2.2c2.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-pregnancy-and-childbirth-2.03d.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-pregnancy-and-childbirth-2.4ad.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-pregnancy-and-childbirth-2.1bf.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-pregnancy-and-childbirth-2.a25.jpg" alt="Беременная кошка" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-2.html" title="Беременность у кошек - особенности течения"><h3 class="card-title">Беременность у кошек - особенности течения</h3></a>
+<p class="card-text">Как только кошка достигает половой зрелости - это примерно 7 – 9 месяцев жизни, то происходит первая течка. Как же определить, что первая течка уже пришла? [...]</p>
+</div>
+<div class="card_footer">
+<a href="pregnancy-and-childbirth/pregnancy-and-childbirth-2.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/humor.html"><h2 class="a-title uline"><span>Юмор о кошках »</span></h2></a>
+<div class="row bg-secondary pt-3">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="fakti.html" title="Факты о котах и кошках">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-fakti.b43.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-fakti.b43.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-fakti.637.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-fakti.87a.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-fakti.19f.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-fakti.32a.jpg" alt="Толстый, рыжий кот" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="fakti.html" title="Факты о котах и кошках"><h3 class="card-title">Факты о котах и кошках</h3></a>
+<p class="card-text">В данном разделе собрано много любопытной, интересной и научной информации о котах и кошках [...]</p>
+</div>
+<div class="card_footer">
+<a href="fakti.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="anekdot.html" title="Анекдоты про котов">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-anekdot.2ed.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-anekdot.2ed.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-anekdot.dd0.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-anekdot.89b.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-anekdot.b4e.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-anekdot.ea5.jpg" alt="Черно-белая фотография кота" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="anekdot.html" title="Анекдоты про котов"><h3 class="card-title">Анекдоты про котов</h3></a>
+<p class="card-text">Свежие и смешные анекдоты про котов, кошек и их хозяев. Приколы про котов. [...]</p>
+</div>
+<div class="card_footer">
+<a href="anekdot.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="joke.html" title="Шутки про котов">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-joke.ad7.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-joke.ad7.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-joke.844.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-joke.336.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-joke.9e9.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-joke.d73.jpg" alt="" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="joke.html" title="Шутки про котов"><h3 class="card-title">Шутки про котов</h3></a>
+<p class="card-text">Подборка смешных и забавных шуток про котов, кошек и котят. Кошачий юмор. [...]</p>
+</div>
+<div class="card_footer">
+<a href="joke.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<section>
+<a href="https://ohcat.ru/nicknames-cats.html"><h2 class="a-title uline"><span>Клички для кошек »</span></h2></a>
+<div class="row">
+<div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="nicknames-cats/persian-nicknames.html" title="Красивые клички для персидских кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-persian-nicknames.6c7.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-persian-nicknames.6c7.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-persian-nicknames.991.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-persian-nicknames.54b.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-persian-nicknames.e57.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-persian-nicknames.6c5.jpg" alt="Персидская белая кошка" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="nicknames-cats/persian-nicknames.html" title="Красивые клички для персидских кошек"><h3 class="card-title">Красивые клички для персидских кошек</h3></a>
+<p class="card-text">Если вы ищете вдохновение, то можно рассмотреть царственные имена. Но если вам нужно милое имя, подумайте о цвете, размере и характере вашего котенка. Они станут [...]</p>
+</div>
+<div class="card_footer">
+<a href="nicknames-cats/persian-nicknames.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="nicknames-cats/japanese-nicknames.html" title="Японские имена для кошек">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-japanese-nicknames.4d3.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-japanese-nicknames.4d3.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-japanese-nicknames.dfb.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-japanese-nicknames.68b.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-japanese-nicknames.70a.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-japanese-nicknames.8c4.jpg" alt="Рыжий кот и сакура" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="nicknames-cats/japanese-nicknames.html" title="Японские имена для кошек"><h3 class="card-title">Японские имена для кошек</h3></a>
+<p class="card-text">Независимо от того, являетесь ли вы японцем или просто любите японскую культуру, японские имена для кошек звучат уникально и экзотично. Япония известна своей [...]</p>
+</div>
+<div class="card_footer">
+<a href="nicknames-cats/japanese-nicknames.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div><div class="col-lg-4 mb-3">
+<div class="card shadow-sm h-100">
+<a href="nicknames-cats/kitten-red-boy-nicknames.html" title="Как назвать рыжего рыжего котенка">
+<picture>
+<source data-srcset="assets/cache/images/article/510x-kitten-red-boy-nicknames.611.jpg" media="(max-width:576px)">
+<source data-srcset="assets/cache/images/article/510x-kitten-red-boy-nicknames.611.jpg" media="(min-width:576px) and (max-width:768px)">
+<source data-srcset="assets/cache/images/article/690x-kitten-red-boy-nicknames.ab7.jpg" media="(min-width:768px) and (max-width:992px)">
+<source data-srcset="assets/cache/images/article/290x-kitten-red-boy-nicknames.bb5.jpg" media="(min-width:992px) and (max-width:1200px)">
+<source data-srcset="assets/cache/images/article/350x-kitten-red-boy-nicknames.301.jpg" media="(min-width:1201px)">
+<img data-src="assets/cache/images/article/x-kitten-red-boy-nicknames.0b2.jpg" alt="Рыжий котенок" class="shadow-sm mb-2 img-fluid lazyload">
+</picture><a>
+<div class="card-body">
+<a href="nicknames-cats/kitten-red-boy-nicknames.html" title="Как назвать рыжего рыжего котенка"><h3 class="card-title">Как назвать рыжего рыжего котенка</h3></a>
+<p class="card-text">Влюбиться в рыжего кота легко. Но выбрать ему имя? Здесь нужно немного воображения. Каждый раз, когда мы даем имя нашим питомцам, важно выбрать то, что подходит их [...]</p>
+</div>
+<div class="card_footer">
+<a href="nicknames-cats/kitten-red-boy-nicknames.html" class="btn btn-outline-info btn-sm btn-block" role="button" aria-pressed="true">Подробнее &raquo;</a>
+</div></div></div>
+</div></section>
+<script src="https://yastatic.net/share2/share.js"></script>
+<div class="ya-share2" data-curtain data-services="vkontakte,facebook,odnoklassniki,telegram,twitter,whatsapp,moimir"></div>
+</div>
+<footer class="bg-dark">
+
+<div itemscope="" itemtype="http://schema.org/Organization">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-lg-4">
+
+<p class="text-light h5 pt-2 pl-3">О НАС</p>
+
+<div class="line-footer mb-3"></div>
+
+<small>
+
+<p class="text-light">Все материалы этого сайта либо созданы автором сайта, либо допускают свободное распространение, либо цитируются в незначительном объёме. Копирование и распространение материалов не возбраняется. Нам не жалко. Главное указывайте автора, то есть <a href="www.ohcat.ru"><span itemprop="name">www.ohcat.ru</span></a>. Уважайте чужой труд!</p>
+
+<p class="text-light">Администрация сайта не несет ответственности за высказывания и действия пользователей сайта на всех страницах сайта, а также за достоверность указанной ими информации.</p>
+
+</small>
+
+</div>
+
+<div class="col-lg-4 map-footer">
+
+<p class="text-light h5 pt-2 pl-3">НАШИ КОНТАКТЫ</p>
+
+<div class="line-footer mb-3"></div>
+
+<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+
+<p class="text-light"><span class="country-name">Россия</span>, <span itemprop="addressLocality">Томск</span><br>
+
+<span itemprop="email"><a class="email" href="mailto:info@ohcat.ru">info@ohcat.ru</a></span><br>
+
+<span itemprop="email"><a class="email" href="mailto:info@catvtomske.ru">info@catvtomske.ru</a></span><br>
+
+<a rel="nofollow" href="https://vk.com/yurez_vk">ВКонтакте</a></p>
+
+</div>
+
+<p class="text-light">
+
+© 2013 - 2022</p>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(75406033, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/75406033" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</div>
+
+<div class="col-lg-4">
+
+<p class="text-light h5 pt-2 pl-3">ССЫЛКИ</p>
+
+<div class="line-footer mb-3"></div>
+
+<ul>
+
+<li><a href="https://ohcat.ru/">Главная</a></li>
+
+<li><a href="https://ohcat.ru/new-on-site.html">Новое на сайте</a></li>
+
+<li><a href="https://ohcat.ru/breeds.html">Породы кошек</a></li>
+
+<li><a href="https://ohcat.ru/kitten.html">Статьи о котятах</a></li>
+
+<li><a href="https://ohcat.ru/article.html">Статьи о кошках и котах</a></li>
+
+<li><a href="https://ohcat.ru/gallery.html">Галерея</a></li>
+
+<li><a href="https://ohcat.ru/blog.html">Мой блог</a></li>
+
+<li><a href="https://ohcat.ru/ad.html">О нас</a></li>
+
+<li><a href="https://ohcat.ru/sitemap.html">Карта сайта</a></li>
+
+</ul>
+
+</div>
+
+</div></div></div>
+
+</footer>
+<script onload="async" src="https://ohcat.ru/assets/scripts/lazyall.min.js"></script>
+<!-- jQuery, Popper.js, Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--jQuery 3.4.1-->
+<link rel="stylesheet" href="https://ohcat.ru/assets/css/jquery.fancybox.min.3.5.7.css" media="screen">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ohcat.ru/assets/scripts/jquery.fancybox.min.3.5.7.js"></script>
+<script>$('[data-fancybox]').fancybox({keyboard:true,arrows:true,transitionEffect:'fade',animationEffect:'fade',clickSlide:'close',smallBtn:false,iframe:{preload:false},image:{preload:'auto'}})</script>
+<!--back-to-top-->
+<script>jQuery(document).ready(function(){var offset = 220;var duration = 500;jQuery(window).scroll(function(){if (jQuery(this).scrollTop() > offset) {jQuery('.back-to-top').fadeIn(duration);} else {jQuery('.back-to-top').fadeOut(duration);}});jQuery('.back-to-top').click(function(event) {event.preventDefault();jQuery('html, body').animate({scrollTop: 0}, duration);return false;})});</script>
+</body></html>
